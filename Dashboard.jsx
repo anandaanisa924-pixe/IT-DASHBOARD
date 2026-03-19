@@ -8,6 +8,7 @@ import TicketStatusCard from '../components/TicketStatusCard';
 import AnnouncementCard1 from '../components/AnnouncementCard1';
 import AnnouncementCard2 from '../components/AnnouncementCard2';
 import InfrastructureCard from '../components/InfrastructureCard';
+import NoBirthdayCard from '../components/NoBirthdayCard';
 import StatusFooter from '../components/StatusFooter'; // Komponen baru untuk footer
 import '../styles/dashboard.css';
 
@@ -22,6 +23,7 @@ function Dashboard() {
                     <CalendarCard />
                     <div className="birthday-wrapper">
                         <BirthdayCard />
+                        <NoBirthdayCard />
                         <StatusFooter /> {/* Menambahkan footer di bawah birthday */}
                     </div>
                 </div>
