@@ -1,46 +1,56 @@
-import React from 'react';
+import React, { useState } from 'react';
 import Header from '../components/Header';
 import CalendarCard from '../components/CalendarCard';
 import BirthdayCard from '../components/BirthdayCard';
 import WorkOrdersCard from '../components/WorkOrdersCard';
 import DailyReviewCard from '../components/DailyReviewCard';
 import TicketStatusCard from '../components/TicketStatusCard';
-import AnnouncementCard1 from '../components/AnnouncementCard1';
-import AnnouncementCard2 from '../components/AnnouncementCard2';
+import AnnouncementCard from '../components/AnnouncementCard';
 import InfrastructureCard from '../components/InfrastructureCard';
 import NoBirthdayCard from '../components/NoBirthdayCard';
-import StatusFooter from '../components/StatusFooter'; // Komponen baru untuk footer
+import StatusFooter from '../components/StatusFooter';
 import '../styles/dashboard.css';
 
 function Dashboard() {
+
+    // 🔥 STATE FILTER BULAN
+    const [selectedMonth, setSelectedMonth] = useState(0); // 0 = semua
+
     return (
         <div className="dashboard">
             <Header />
             
             <div className="dashboard-grid">
-                {/* LEFT SECTION - 2 Cards + Footer */}
+
+                {/* LEFT */}
                 <div className="left-section">
                     <CalendarCard />
+
                     <div className="birthday-wrapper">
-                        <BirthdayCard />
-                        <NoBirthdayCard />
-                        <StatusFooter /> {/* Menambahkan footer di bawah birthday */}
+                        <BirthdayCard selectedMonth={selectedMonth} />
+
+                        <NoBirthdayCard 
+                            selectedMonth={selectedMonth}
+                            setSelectedMonth={setSelectedMonth}
+                        />
+
+                        <StatusFooter />
                     </div>
                 </div>
-                
-                {/* MIDDLE SECTION - 3 Cards */}
+
+                {/* MIDDLE */}
                 <div className="middle-section">
                     <WorkOrdersCard />
                     <DailyReviewCard />
-                    <AnnouncementCard1 />
                 </div>
-                
-                {/* RIGHT SECTION - 3 Cards */}
+
+                {/* RIGHT */}
                 <div className="right-section">
                     <TicketStatusCard />
                     <InfrastructureCard />
-                    <AnnouncementCard2 />
+                    <AnnouncementCard />
                 </div>
+
             </div>
         </div>
     );

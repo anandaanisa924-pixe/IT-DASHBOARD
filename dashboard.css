@@ -303,31 +303,55 @@ body {
 }
 
 /* Birthday Card */
+/* ===== BIRTHDAY SCROLL IMPROVED ===== */
 .birthday-items {
-    flex: 1;
+    height: 80px;
     overflow-y: auto;
-    min-height: 0;
+    display: flex;
+    flex-direction: column;
+    gap: 4px;
 }
 
+/* Item jadi mini card */
 .birthday-item {
-    padding: 5px 0;
-    border-bottom: 1px solid #4a5568;
+    padding: 5px 8px;
+    border-radius: 6px;
+    background: #2d3a5a;
+    border: 1px solid #4a5568;
 }
 
-.birthday-item:last-child {
-    border-bottom: none;
+/* Hover effect */
+.birthday-item:hover {
+    background: #3b4b6b;
+    transform: translateY(-1px);
+}
+
+/* Scrollbar khusus birthday */
+.birthday-items::-webkit-scrollbar {
+    width: 5px;
+}
+
+.birthday-items::-webkit-scrollbar-track {
+    background: transparent;
+}
+
+.birthday-items::-webkit-scrollbar-thumb {
+    background: #6c7a9a;
+    border-radius: 10px;
+}
+
+.birthday-items::-webkit-scrollbar-thumb:hover {
+    background: #9fb3d1;
 }
 
 .birthday-name {
-    font-weight: 600;
-    color: white !important;
-    font-size: 0.8rem;
-    margin-bottom: 2px;
+    font-size: 0.7rem;
+    line-height: 1.1;
 }
 
 .birthday-dept {
-    font-size: 0.65rem;
-    color: #b0c4de !important;
+    font-size: 0.6rem;
+    line-height: 1.1;
 }
 
 /* No birthday today - old style (diganti dengan yang baru) */
