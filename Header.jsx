@@ -20,11 +20,11 @@ function Header() {
     const month = months[currentTime.getMonth()];
     const year = currentTime.getFullYear();
     
-    // Format waktu dengan detik
+    
     const time = currentTime.toLocaleTimeString('id-ID', { 
         hour: '2-digit', 
         minute: '2-digit',
-        second: '2-digit'  // Menambahkan detik
+        second: '2-digit'  
     });
 
     return (

@@ -1,13 +1,12 @@
 import React, { useState, useEffect } from 'react';
 
 function WorkOrdersCard() {
-
     const [openWO, setOpenWO] = useState([]);
     const [progressWO, setProgressWO] = useState([]);
 
     // ===== FUNCTION UNTUK MERAPIKAN JOB_NAME =====
     function formatJobName(str) {
-        const exceptions = ['SSD', 'HDD', 'LAN', 'VPN']; // kata khusus tetap huruf besar
+        const exceptions = ['SSD', 'HDD', 'LAN', 'VPN'];
         return str
             .split(' ')
             .map(word => {
@@ -17,25 +16,25 @@ function WorkOrdersCard() {
             .join(' ');
     }
 
-    // ===== AMBIL DATA WO =====
-    useEffect(() => {
+    // ===== FUNCTION FETCH WO =====
+    const fetchWO = () => {
         fetch("https://stagingservicewo.salokapark.app/api/get_wo_request?id_dept=DP011")
             .then(response => response.json())
             .then(result => {
                 const woData = result.data;
 
                 // URUTKAN DATA TERBARU
-                const sorted = woData.sort((a, b) => 
-                    new Date(b.created_at) - new Date(a.created_at)
+                const sorted = woData.sort(
+                    (a, b) => new Date(b.created_at) - new Date(a.created_at)
                 );
 
                 // FILTER STATUS
                 const open = sorted
-                    .filter(item => item.track_status === 1)
+                    .filter(item => item.track_status === 2)
                     .slice(0, 5);
 
                 const progress = sorted
-                    .filter(item => item.track_status === 2)
+                    .filter(item => item.track_status === 3)
                     .slice(0, 5);
 
                 setOpenWO(open);
@@ -44,6 +43,17 @@ function WorkOrdersCard() {
             .catch(error => {
                 console.error("Error mengambil data WO:", error);
             });
+    };
+
+    // ===== AUTO REFRESH 10 DETIK =====
+    useEffect(() => {
+        fetchWO(); 
+
+        const interval = setInterval(() => {
+            fetchWO();
+        }, 10000); // 10 detik
+
+        return () => clearInterval(interval); 
     }, []);
 
     return (

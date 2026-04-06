@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React from 'react';
 import Header from '../components/Header';
 import CalendarCard from '../components/CalendarCard';
 import BirthdayCard from '../components/BirthdayCard';
@@ -7,14 +7,10 @@ import DailyReviewCard from '../components/DailyReviewCard';
 import TicketStatusCard from '../components/TicketStatusCard';
 import AnnouncementCard from '../components/AnnouncementCard';
 import InfrastructureCard from '../components/InfrastructureCard';
-import NoBirthdayCard from '../components/NoBirthdayCard';
 import StatusFooter from '../components/StatusFooter';
 import '../styles/dashboard.css';
 
 function Dashboard() {
-
-    // 🔥 STATE FILTER BULAN
-    const [selectedMonth, setSelectedMonth] = useState(0); // 0 = semua
 
     return (
         <div className="dashboard">
@@ -22,29 +18,27 @@ function Dashboard() {
             
             <div className="dashboard-grid">
 
-                {/* LEFT */}
+                {/* ===== LEFT SECTION ===== */}
                 <div className="left-section">
                     <CalendarCard />
 
                     <div className="birthday-wrapper">
-                        <BirthdayCard selectedMonth={selectedMonth} />
+                        
+                        {/* 🔥 BIRTHDAY (SUDAH ADA FILTER DI DALAM) */}
+                        <BirthdayCard />
 
-                        <NoBirthdayCard 
-                            selectedMonth={selectedMonth}
-                            setSelectedMonth={setSelectedMonth}
-                        />
-
+                        {/* 🔥 FOOTER */}
                         <StatusFooter />
                     </div>
                 </div>
 
-                {/* MIDDLE */}
+                {/* ===== MIDDLE SECTION ===== */}
                 <div className="middle-section">
                     <WorkOrdersCard />
                     <DailyReviewCard />
                 </div>
 
-                {/* RIGHT */}
+                {/* ===== RIGHT SECTION ===== */}
                 <div className="right-section">
                     <TicketStatusCard />
                     <InfrastructureCard />
